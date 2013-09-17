@@ -1,0 +1,3 @@
+[submodule "mabi"]
+	path = mabi
+	url = https://github.com/prolificinteractive/mabi.git
