@@ -51,6 +51,18 @@ class AppTest extends \PHPUnit_Framework_TestCase {
     return $app;
   }
 
+  /**
+   * Sets up a call to the application.  Can be used to modify controllers for tests before
+   * actually making the call.
+   *
+   * @param $path string The path that you want to make a call for
+   * @param $queryString string The query string that you would attach to the url (e.g. q=search+string&lat=34.32)
+   * @param $httpMethod string Can be any HTTP method e.g. GET, POST, PUT, DELETE
+   * @param $requestBody string The content of the request (usually used for POST or PUT)
+   * @param $headers string[] An associative array containing headers and their values
+   *
+   * @return \MABI\App
+   */
   protected function setupAppCall($path,
                                   $queryString = '',
                                   $httpMethod = 'GET',
