@@ -36,6 +36,22 @@ class AppTest extends \PHPUnit_Framework_TestCase {
    * @return \MABI\App
    */
   protected function makeAppCall($path,
+                                 $queryString = '',
+                                 $httpMethod = 'GET',
+                                 $requestBody = NULL,
+                                 $headers = array()) {
+
+    $app = $this->setupAppCall($path,
+      $queryString,
+      $httpMethod,
+      $requestBody,
+      $headers);
+
+    $app->call();
+    return $app;
+  }
+
+  protected function setupAppCall($path,
                                   $queryString = '',
                                   $httpMethod = 'GET',
                                   $requestBody = NULL,
@@ -56,7 +72,7 @@ class AppTest extends \PHPUnit_Framework_TestCase {
     include __DIR__ . '/config.test.php';
 
     $app = \MABI\App::getSingletonApp();
-    $app->call();
+
     $this->app = $app;
     return $app;
   }
