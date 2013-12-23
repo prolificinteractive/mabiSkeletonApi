@@ -3,7 +3,6 @@
 $app = MABI\App::getSingletonApp();
 
 include_once __DIR__ . '/../../mabi/MongoDataConnection.php';
-include_once __DIR__ . '/Errors.php';
 
 $app->addDataConnection(
   'default',
