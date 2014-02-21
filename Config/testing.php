@@ -1,6 +1,6 @@
 <?php
 
-include_once 'PHPUnit/Autoload.php';
+include_once __DIR__ . '/../vendor/autoload.php';
 
 class AppTest extends \PHPUnit_Framework_TestCase {
 
