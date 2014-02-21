@@ -1,0 +1,6 @@
+{
+  "minimum-stability": "dev",
+  "require":           {
+    "prolificinteractive/mabi": "dev-develop"
+  }
+}

@@ -17,3 +17,6 @@ $app->setControllerLoaders(array(
 ));
 
 $app->getSlim()->contentType('application/json');
+
+include_once __DIR__ . '/Errors.php';
+$app->getErrorResponseDictionary()->overrideErrorResponses(new Errors());

@@ -1,7 +1,5 @@
 <?php
 
-
-
 include_once 'PHPUnit/Autoload.php';
 
 class AppTest extends \PHPUnit_Framework_TestCase {
@@ -16,7 +14,7 @@ class AppTest extends \PHPUnit_Framework_TestCase {
 
     parent::setUp();
 
-    include_once __DIR__ . '/../../mabi/bootstrap.php';
+    include_once __DIR__ . '/../mabi/bootstrap.php';
 
     \Slim\Environment::mock();
     include __DIR__ . '/config.test.php';
@@ -71,7 +69,7 @@ class AppTest extends \PHPUnit_Framework_TestCase {
 
     \MABI\App::clearSingletonApp();
 
-    include_once __DIR__ . '/../../mabi/bootstrap.php';
+    include_once __DIR__ . '/../mabi/bootstrap.php';
 
     $env = array('REQUEST_METHOD' => $httpMethod, 'QUERY_STRING' => $queryString, 'PATH_INFO' => $path);
     if (!empty($requestBody)) {

@@ -1,3 +1,7 @@
+# mabi
+vendor/*
+cache/*
+
 # global .gitignore
 # check out https://github.com/github/gitignore
 
