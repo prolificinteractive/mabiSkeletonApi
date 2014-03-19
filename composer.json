@@ -1,7 +1,7 @@
 {
   "minimum-stability": "dev",
   "require": {
-    "prolificinteractive/mabi": "dev-develop"
+    "prolificinteractive/mabi": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "3.7.*"
