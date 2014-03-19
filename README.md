@@ -21,7 +21,7 @@ mabiSkeletonApi
 ## Models Folder ##
 * Controllers will be auto-generated unless this code is above:
 `/**`
-` * @model NoController`
+` * @Model\NoController`
 ` */`
 
 ## Libraries ##

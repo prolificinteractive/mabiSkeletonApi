@@ -7,7 +7,7 @@ use MABI\RESTModelController;
 
 
 /**
- * @docs show-model
+ * @Docs\ShowModel
  */
 class ExampleController extends RESTModelController {
 
