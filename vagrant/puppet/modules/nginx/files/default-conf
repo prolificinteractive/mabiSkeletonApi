@@ -1,0 +1,15 @@
+server {
+	listen 80;
+	root /vagrant/webroot;
+	index index.php;
+
+	location / {
+		try_files $uri /index.php?$query_string;
+	}
+
+	location ~ \.php$ {
+		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_index index.php;
+		include fastcgi_params;
+	}
+}

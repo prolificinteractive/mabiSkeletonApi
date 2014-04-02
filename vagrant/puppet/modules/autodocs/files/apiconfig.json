@@ -1,0 +1,9 @@
+{
+    "mabiskeleton": {
+        "name": "mabiSkeleton API",
+        "protocol": "http",
+        "baseURL": "localhost",
+        "publicPath": "/",
+        "auth":""
+    }
+}
