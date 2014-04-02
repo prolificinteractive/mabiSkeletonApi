@@ -7,7 +7,7 @@ include_once __DIR__ . '/../mabi/MongoDataConnection.php';
 $app->addDataConnection(
   'default',
   MABI\MongoDataConnection::create(
-    'mongodb://user:password@localhost:27017/defaultDB'
+    'mongodb://localhost:27017/mabi'
   )
 );
 
