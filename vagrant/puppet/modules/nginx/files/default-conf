@@ -1,6 +1,6 @@
 server {
 	listen 80;
-	root /vagrant/webroot;
+	root /var/www/mabiSkeletonApi/webroot;
 	index index.php;
 
 	location / {

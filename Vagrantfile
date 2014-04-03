@@ -1,3 +1,8 @@
+require 'yaml'
+
+dir = File.dirname(File.expand_path(__FILE__))
+confVals = YAML.load_file("#{dir}/vagrant/config.yaml")
+
 Vagrant.configure('2') do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
@@ -13,13 +18,34 @@ Vagrant.configure('2') do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.network "forwarded_port", guest: 80, host: 3333
-  config.vm.network "forwarded_port", guest: 3000, host: 3334
+  config.vm.network "forwarded_port", guest: 80, host: confVals['vm']['apiPort']
+  config.vm.network "forwarded_port", guest: 3000, host: confVals['vm']['docsPort']
 
-  # Share an additional folder to the guest VM. The first argument is
-  # an identifier, the second is the path on the guest to mount the
-  # folder, and the third is the path on the host to the actual folder.
-  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  # Disable defalut shared folder and set it to what we want
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/var/www/mabiSkeletonApi"
+ 
+  # configure an ec2 instance 
+  config.vm.provider :aws do |aws, override|
+    override.vm.box = "ubuntu_aws"
+    override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+    override.ssh.username = "#{confVals['aws']['userName']}"
+    override.ssh.private_key_path = "#{confVals['aws']['privateKeyPath']}"
+    
+    aws.keypair_name = "#{confVals['aws']['keypairName']}"
+    aws.access_key_id = "#{confVals['aws']['accessKeyId']}"
+    aws.secret_access_key = "#{confVals['aws']['secretAccessKey']}"
+    aws.security_groups = "#{confVals['aws']['securityGroups']}"
+    aws.instance_type = "#{confVals['aws']['instanceType']}"
+    aws.ami = "#{confVals['aws']['amiId']}"
+    aws.tags = {
+      'Name' => "#{confVals['aws']['instanceName']}",
+    }
+  end
+  
+  # Enable shell provisioning to bootstrap puppet
+  # This installs puppet if it is not already installed (good for aws)
+  config.vm.provision :shell, :path => "vagrant/bootstrap.sh"
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.

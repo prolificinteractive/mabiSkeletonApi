@@ -1,0 +1,16 @@
+---
+vm:
+  apiPort: 3333
+  docsPort: 3334
+
+aws:
+  username: "ubuntu"
+  privateKeyPath: ""
+  keypairName: ""
+  accessKeyId: ""
+  secretAccessKey: ""
+  securityGroups: "launch-wizard-11"
+  instanceType: "t1.micro"
+  amiId: "ami-59a4a230"
+  instanceName: 'MABI_VAGRANT_TEST'
+  
