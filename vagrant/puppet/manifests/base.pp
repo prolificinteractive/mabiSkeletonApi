@@ -62,7 +62,6 @@ class {'autodocs':
     Class['nodejs'],
     Class['php-fpm'],
     Class['git'],
-    Class['nginx'],
     Class['redis-server'],
   ],
 }
