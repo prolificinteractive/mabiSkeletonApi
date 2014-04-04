@@ -18,8 +18,8 @@ Vagrant.configure('2') do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.network "forwarded_port", guest: 80, host: confVals['vm']['apiPort']
-  config.vm.network "forwarded_port", guest: 3000, host: confVals['vm']['docsPort']
+  config.vm.network "forwarded_port", guest: 80, host: confVals['api']['port']
+  config.vm.network "forwarded_port", guest: 3000, host: confVals['api']['docsPort']
 
   # Disable defalut shared folder and set it to what we want
   config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -29,7 +29,7 @@ Vagrant.configure('2') do |config|
   config.vm.provider :aws do |aws, override|
     override.vm.box = "ubuntu_aws"
     override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
-    override.ssh.username = "#{confVals['aws']['userName']}"
+    override.ssh.username = "#{confVals['aws']['username']}"
     override.ssh.private_key_path = "#{confVals['aws']['privateKeyPath']}"
     
     aws.keypair_name = "#{confVals['aws']['keypairName']}"
