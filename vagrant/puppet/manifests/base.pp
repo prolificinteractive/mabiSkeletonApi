@@ -21,7 +21,7 @@ class repos {
 
   exec {"add node repo":
     command => "add-apt-repository ppa:chris-lea/node.js",
-    require => Exec['property commons']
+    require => Exec['property commons'],
   }
 }
 
@@ -40,28 +40,43 @@ class {'repos':} ->
 class {'system-update':}
 
 class {'git':
-  require => Class['system-update']
+  require => Class['system-update'],
 }
 class {'nginx':
-  require => Class['system-update']
+  require => Class['system-update'],
 }
-class {'mongo':
-  require => Class['system-update']
+
+if ($db_name) {
+  class {'mongo':
+    require => Class['system-update'],
+  }
 }
 class {'php-fpm':
-  require => Class['system-update']
+  require => Class['system-update'],
 }
 class {'nodejs':
-  require => Class['system-update']
+  require => Class['system-update'],
 }
 class {'redis-server':
-  require => Class['system-update']
+  require => Class['system-update'],
 }
-class {'autodocs':
+
+exec {'composer install':
+  command => 'php composer.phar install',
+  environment => "COMPOSER_HOME=/var/www/${app_dir}",
+  cwd => "/var/www/${app_dir}",
   require => [
-    Class['nodejs'],
     Class['php-fpm'],
     Class['git'],
-    Class['redis-server'],
   ],
+}
+
+if ($docs_port) {
+  class {'autodocs':
+    require => [
+      Class['nodejs'],
+      Class['redis-server'],
+      Exec['composer install'],
+    ],
+  }
 }

@@ -22,12 +22,12 @@ class mongo {
     }
 
     exec { 'import applications':
-        command => 'mongoimport -d mabi -c applications < /tmp/applications.json --jsonArray',
+        command => "mongoimport -d ${db_name} -c applications < /tmp/applications.json --jsonArray",
         logoutput => "on_failure",
         require => [
             Exec['test-mongo'],
             File["/tmp/applications.json"],
         ],
-        onlyif => "mongo mabi --eval 'db.applications.count()' | grep ^0",
+        onlyif => "mongo ${db_name} --eval 'db.applications.count()' | grep ^0",
     }
 }

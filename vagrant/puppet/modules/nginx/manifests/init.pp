@@ -12,7 +12,7 @@ class nginx {
         path => '/etc/nginx/sites-available/default-conf',
         ensure => file,
         require => Package['nginx'],
-        source => 'puppet:///modules/nginx/default-conf',
+        content => template("nginx/default-conf.erb"),
     }
 
     file { 'default-nginx-disable':
