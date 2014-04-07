@@ -14,7 +14,7 @@ class ExampleController extends RESTModelController {
   /**
    * This is a standard get for an entire collection.
    */
-  public function _restGetCollection()
+  public function get()
   {
     echo 'This would get an the entire collection by default';
   }
