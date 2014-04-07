@@ -2,6 +2,7 @@
 vendor/*
 cache/*
 .vagrant/*
+composer.lock
 
 # global .gitignore
 # check out https://github.com/github/gitignore

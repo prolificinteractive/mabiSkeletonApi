@@ -10,7 +10,7 @@ api:
   # The name of the local mongodb instance
   # If this is false mongo will not be installed and a remote db will 
   # need to be used instead
-  dbName: "mabi"
+  dbName: "defaultDB"
 
 # These options are only required to spin up an aws instance.  If you do not
 # use vagrant up --provider-aws this will be ignored.
