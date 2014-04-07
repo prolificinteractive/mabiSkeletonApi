@@ -1,16 +1,37 @@
 ---
-vm:
-  apiPort: 3333
+api:
+  # Port the host will access the api from 
+  port: 3333
+  # Port the host will access the docs from
+  # If this is false the docs will not be loaded on the vm.
   docsPort: 3334
+  # Name of the Docs, will default to the project directory name
+  docsName: "Mabi Skeleton"
+  # The name of the local mongodb instance
+  # If this is false mongo will not be installed and a remote db will 
+  # need to be used instead
+  dbName: "mabi"
 
+# These options are only required to spin up an aws instance.  If you do not
+# use vagrant up --provider-aws this will be ignored.
+# You will also need to install the proper plugin with: 
+# vagrant plugin install vagrant-aws 
 aws:
+  # The user to sign into the instance
   username: "ubuntu"
+  # The path to the private being used to ssh into the instance
   privateKeyPath: ""
+  # Name of the key pair being used, get this from the aws console
   keypairName: ""
+  # Aws access key id, get this from aws console
   accessKeyId: ""
+  # Aws sercret access key, get this from aws console
   secretAccessKey: ""
+  # Security groups to be used, can be a yaml array, get these from aws console
   securityGroups: "launch-wizard-11"
+  # The type of instance you want to spin up
   instanceType: "t1.micro"
+  # The id of the ami you want to use to spin up
   amiId: "ami-59a4a230"
+  # The name of the instance you are spinning up
   instanceName: 'MABI_VAGRANT_TEST'
-  
